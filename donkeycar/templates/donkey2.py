@@ -22,6 +22,7 @@ from donkeycar.parts.keras import KerasLinear
 from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
 from donkeycar.parts.datastore import TubGroup, TubWriter
 from donkeycar.parts.web_controller import LocalWebController
+from donkeypart_xbox_ls_controller import Xbox1sController
 from donkeycar.parts.clock import Timestamp
 from donkeycar.parts.datastore import TubGroup, TubWriter
 from donkeycar.parts.keras import KerasLinear
@@ -48,7 +49,14 @@ def drive(cfg, model_path=None, use_chaos=False):
     cam = PiCamera(resolution=cfg.CAMERA_RESOLUTION)
     V.add(cam, outputs=['cam/image_array'], threaded=True)
 
-    ctr = LocalWebController(use_chaos=use_chaos)
+    if use_joystick or cfg.USE_JOYSTICK_AS_DEFAULT: 
+        print("use xbox controller") 
+        ctr = Xbox1sController(device_search_term="xbox") 
+    else: 
+    # This web controller will create a web server that is capable 
+    # of managing steering, throttle, and modes, and more. 
+        ctr = LocalWebController(use_chaos=use_chaos)
+    
     V.add(ctr,
           inputs=['cam/image_array'],
           outputs=['user/angle', 'user/throttle', 'user/mode', 'recording'],
@@ -169,14 +177,15 @@ if __name__ == '__main__':
     cfg = dk.load_config()
 
     if args['drive']:
-        drive(cfg, model_path=args['--model'], use_chaos=args['--chaos'])
-
+        drive(cfg, model_path=args['--model'], use_joystick=args[ '--js'], use_chaos=args['--chaos'])
+        print("start driving!")
     elif args['train']:
         tub = args['--tub']
         new_model_path = args['--model']
         base_model_path = args['--base_model']
         cache = not args['--no_cache']
         train(cfg, tub, new_model_path, base_model_path)
+        print("start training!")
 
 
 
