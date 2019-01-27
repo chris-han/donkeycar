@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-setup(name='mtcdonkeycar',
+setup(name='donkeycar',
       version='2.5.8',
       description='Self driving library for python.',
       long_description=long_description,
