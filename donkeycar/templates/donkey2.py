@@ -24,7 +24,6 @@ from donkeycar.parts.datastore import TubGroup, TubWriter
 from donkeycar.parts.web_controller import LocalWebController
 from donkeycar.parts.clock import Timestamp
 from donkeycar.parts.datastore import TubGroup, TubWriter
-from donkeycar.parts.keras import KerasCategorical
 from donkeycar.parts.transform import Lambda
 from donkeypart_xbox_one_s_controller import Xbox1sController 
 
