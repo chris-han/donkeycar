@@ -28,14 +28,6 @@ install:
 script:
 - pytest -v --cov=donkeycar donkeycar/tests
 
-<<<<<<< HEAD
-stages:
-    - name: deploy
-      if: branch = master
-
-
-=======
->>>>>>> dev
 
 after_success:
 - codecov
