@@ -40,7 +40,7 @@ def drive(cfg, model_path=None, use_chaos=False):
     Parts may have named outputs and inputs. The framework handles passing named outputs
     to parts requesting the same named input.
     """
-
+    
     V = dk.vehicle.Vehicle()
 
     clock = Timestamp()
@@ -86,10 +86,14 @@ def drive(cfg, model_path=None, use_chaos=False):
           run_condition='run_pilot')
 
     # Choose what inputs should change the car.
+
     def drive_mode(mode,
                    user_angle, user_throttle,
                    pilot_angle, pilot_throttle):
-        print("drive mode: {}".format(mode))
+        if mode!= V.current_drive_mode:
+            print("drive mode: {}".format(mode))
+            V.current_drive_mode=mode
+
         if mode == 'user':
             return user_angle, user_throttle
 
