@@ -48,7 +48,14 @@ def drive(cfg, model_path=None, use_chaos=False):
     cam = PiCamera(resolution=cfg.CAMERA_RESOLUTION)
     V.add(cam, outputs=['cam/image_array'], threaded=True)
 
-    ctr = LocalWebController(use_chaos=use_chaos)
+    if use_joystick or cfg.USE_JOYSTICK_AS_DEFAULT: 
+        print("use xbox controller") 
+        ctr = Xbox1sController(device_search_term="xbox") 
+    else: 
+    # This web controller will create a web server that is capable 
+    # of managing steering, throttle, and modes, and more. 
+        ctr = LocalWebController(use_chaos=use_chaos) 
+
     V.add(ctr,
           inputs=['cam/image_array'],
           outputs=['user/angle', 'user/throttle', 'user/mode', 'recording'],
@@ -126,6 +133,7 @@ def drive(cfg, model_path=None, use_chaos=False):
     V.add(tub, inputs=inputs, run_condition='recording')
 
     # run the vehicle
+    print ("start driving...")    
     V.start(rate_hz=cfg.DRIVE_LOOP_HZ,
             max_loop_count=cfg.MAX_LOOPS)
 
@@ -160,6 +168,7 @@ def train(cfg, tub_names, new_model_path, base_model_path=None):
     steps_per_epoch = total_train // cfg.BATCH_SIZE
     print('steps_per_epoch', steps_per_epoch)
 
+    print ("start training...")    
     kl.train(train_gen,
              val_gen,
              saved_model_path=new_model_path,
@@ -172,7 +181,7 @@ if __name__ == '__main__':
     cfg = dk.load_config()
 
     if args['drive']:
-        drive(cfg, model_path=args['--model'], use_chaos=args['--chaos'])
+        drive(cfg, model_path=args['--model'], use_joystick=args[ '--js'], use_chaos=args['--chaos'])
 
     elif args['train']:
         tub = args['--tub']
