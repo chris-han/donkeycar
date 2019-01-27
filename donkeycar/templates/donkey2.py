@@ -89,6 +89,7 @@ def drive(cfg, model_path=None, use_chaos=False):
     def drive_mode(mode,
                    user_angle, user_throttle,
                    pilot_angle, pilot_throttle):
+        print("drive mode: {}".format(mode))
         if mode == 'user':
             return user_angle, user_throttle
 
@@ -129,8 +130,9 @@ def drive(cfg, model_path=None, use_chaos=False):
     # single tub
     tub = TubWriter(path=cfg.TUB_PATH, inputs=inputs, types=types)
     V.add(tub, inputs=inputs, run_condition='recording')
-
+    
     # run the vehicle
+    print("start driving!")
     V.start(rate_hz=cfg.DRIVE_LOOP_HZ,
             max_loop_count=cfg.MAX_LOOPS)
 
@@ -165,6 +167,7 @@ def train(cfg, tub_names, new_model_path, base_model_path=None):
     steps_per_epoch = total_train // cfg.BATCH_SIZE
     print('steps_per_epoch', steps_per_epoch)
 
+    print("start training!")
     kl.train(train_gen,
              val_gen,
              saved_model_path=new_model_path,
@@ -178,14 +181,14 @@ if __name__ == '__main__':
 
     if args['drive']:
         drive(cfg, model_path=args['--model'], use_joystick=args[ '--js'], use_chaos=args['--chaos'])
-        print("start driving!")
+
     elif args['train']:
         tub = args['--tub']
         new_model_path = args['--model']
         base_model_path = args['--base_model']
         cache = not args['--no_cache']
         train(cfg, tub, new_model_path, base_model_path)
-        print("start training!")
+        
 
 
 
