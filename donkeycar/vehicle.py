@@ -25,6 +25,8 @@ class Vehicle:
         self.parts = []
         self.on = True
         self.threads = []
+        self.current_drive_mode=None
+        self.current_cam_status=None
 
     def add(self, part, inputs=[], outputs=[],
             threaded=False, run_condition=None):
