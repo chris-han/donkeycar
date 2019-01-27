@@ -28,7 +28,7 @@ from donkeycar.parts.keras import KerasLinear
 from donkeycar.parts.transform import Lambda
 from donkeypart_xbox_one_s_controller import Xbox1sController 
 
-def drive(cfg, model_path=None, use_chaos=False):
+def drive(cfg, model_path=None, use_joystick=False, use_chaos=False):
 
     """
     Construct a working robotic vehicle from many parts.
