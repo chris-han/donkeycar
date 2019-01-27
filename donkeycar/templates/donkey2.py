@@ -23,11 +23,13 @@ from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
 from donkeycar.parts.datastore import TubGroup, TubWriter
 from donkeycar.parts.web_controller import LocalWebController
 from donkeycar.parts.clock import Timestamp
+from donkeycar.parts.controller import LocalWebController, JoystickController
 from donkeycar.parts.datastore import TubGroup, TubWriter
-from donkeycar.parts.keras import KerasLinear
+from donkeycar.parts.keras import KerasCategorical
 from donkeycar.parts.transform import Lambda
 from donkeypart_xbox_one_s_controller import Xbox1sController 
 
+#import parts
 def drive(cfg, model_path=None, use_joystick=False, use_chaos=False):
 
     """
@@ -181,7 +183,7 @@ if __name__ == '__main__':
     cfg = dk.load_config()
 
     if args['drive']:
-        drive(cfg, model_path=args['--model'], use_joystick=args[ '--js'], use_chaos=args['--chaos'])
+        drive(cfg, model_path=args['--model'], use_joystick=args['--js'], use_chaos=args['--chaos'])
 
     elif args['train']:
         tub = args['--tub']
