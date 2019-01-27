@@ -6,15 +6,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-setup(name='donkeycar',
-      version='2.5.7',
+setup(name='mtcdonkeycar',
+      version='2.5.8',
       description='Self driving library for python.',
       long_description=long_description,
       long_description_content_type="text/markdown",
-      url='https://github.com/autorope/donkeycar',
-      download_url='https://github.com/autorope/donkeycar/archive/2.1.5.tar.gz',
-      author='Will Roscoe',
-      author_email='wroscoe@gmail.com',
+      url='https://github.com/chris-han/mtcdonkeycar',
+      author='Chris Han',
       license='MIT',
       entry_points={
           'console_scripts': [
