@@ -26,7 +26,7 @@ from donkeycar.parts.clock import Timestamp
 from donkeycar.parts.datastore import TubGroup, TubWriter
 from donkeycar.parts.keras import KerasLinear
 from donkeycar.parts.transform import Lambda
-
+from donkeypart_xbox_one_s_controller import Xbox1sController 
 
 def drive(cfg, model_path=None, use_chaos=False):
 
@@ -81,6 +81,9 @@ def drive(cfg, model_path=None, use_chaos=False):
     def drive_mode(mode,
                    user_angle, user_throttle,
                    pilot_angle, pilot_throttle):
+        if mode!=V.current_drive_mode:
+            V.current_drive_mode=mode
+            print ("current_drive_mode: {}".format(V.current_drive_mode))
         if mode == 'user':
             return user_angle, user_throttle
 

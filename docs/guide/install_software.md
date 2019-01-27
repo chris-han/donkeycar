@@ -63,8 +63,8 @@ ping donkeypi.local
 once it's booted. If there are many other Pi's on the network, then this will have problems. If you are on a Linux machine, or are able to edit the UUID partition, then you can edit the `/etc/hostname` and `/etc/hosts` files now to make finding your pi on the network easier after boot. Edit those to replace `raspberrypi` with a name of your choosing. Use all lower case, no special characters, no hyphens, no underscores `_`.
 
 ```
-sudo vi /media/userID/UUID/etc/hostname
-sudo vi /media/userID/UUID/etc/hosts
+sudo nano /media/userID/UUID/etc/hostname
+sudo nano /media/userID/UUID/etc/hosts
 ```
 
 Now your SD card is ready. Eject it from your computer, put it in the Pi, and plug in the Pi.
@@ -102,7 +102,7 @@ ping donkeypi.local
 
 Hopefully, one of those methods worked and you are now ready to SSH into your Pi. On Mac and Linux, you can open Terminal. On Windows you can install [Putty](http://www.putty.org/) or [one of the alternatives](https://www.htpcbeginner.com/best-ssh-clients-windows-putty-alternatives/2/).
 
-If you have a command prompt, you can try:
+If you have a command prompt or in VS code terminal, you can try:
 
 ```
 ssh pi@donkeypi.local
@@ -136,7 +136,8 @@ If you are using the prebuilt image specified above, then your Pi is ready to go
 The disk image only has the libraries(tensorflow..) installed, not donkeycar.
 
 ```bash
-pip install donkeycar[pi]
+pip install git+https://github.com/chris-han/donkeycar.git[pi]
+
 #test that you are using the most recent version (found in __init__ file)
 python -c "import donkeycar as dk; print(dk.__version__)"
 ```
@@ -147,7 +148,7 @@ python -c "import donkeycar as dk; print(dk.__version__)"
 Now generate the drive script, config and folder structure for your car.
 
 ```bash
-donkey createcar ~/mycar
+donkey createcar ~/mtcar
 ```
 
 ----
