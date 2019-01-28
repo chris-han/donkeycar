@@ -48,7 +48,7 @@ def drive(cfg, model_path=None, use_joystick=False, use_chaos=False):
     cam = PiCamera(resolution=cfg.CAMERA_RESOLUTION)
     V.add(cam, outputs=['cam/image_array'], threaded=True)
 
-    if use_joystick or cfg.USE_JOYSTICK_AS_DEFAULT: 
+    if use_joystick: 
         print("use xbox controller") 
         ctr = Xbox1sController(device_search_term="xbox") 
     else: 
