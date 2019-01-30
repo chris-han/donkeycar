@@ -87,9 +87,14 @@ class CreateCar(BaseCommand):
         app_template_path = os.path.join(TEMPLATES_PATH, template+'.py')
         config_template_path = os.path.join(TEMPLATES_PATH, 'config_defaults.py')
 
+        aml_agent_template_path = os.path.join(TEMPLATES_PATH, 'cloud_sync.py')
+        aml_config_template_path = os.path.join(TEMPLATES_PATH, 'config.json')
 
         car_app_path = os.path.join(path, 'manage.py')
         car_config_path = os.path.join(path, 'config.py')
+
+        aml_agent_path = os.path.join(path, 'aml_agent.py')
+        aml_config_path = os.path.join(path, 'config.json')
 
         if os.path.exists(car_app_path) and not overwrite:
             print('Car app already exists. Delete it and rerun createcar to replace.')
@@ -103,6 +108,18 @@ class CreateCar(BaseCommand):
             print("Copying car config defaults. Adjust these before starting your car.")
             print(config_template_path)
             shutil.copyfile(config_template_path, car_config_path)
+# copy aml files
+        if os.path.exists(aml_agent_path) and not overwrite:
+            print('Aml agent already exists. Delete it and rerun createcar to replace.')
+        else:
+            print("Copying aml agent: {}".format(template))
+            shutil.copyfile(aml_agent_template_path, aml_agent_path)
+
+        if os.path.exists(aml_config_path) and not overwrite:
+            print('Aml config already exists. Delete it and rerun createcar to replace.')
+        else:
+            print("Copying aml config template: {}".format(template))
+            shutil.copyfile(aml_config_template_path, aml_config_path)
 
         print("Donkey setup complete.")
 
