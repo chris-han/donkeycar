@@ -76,7 +76,7 @@ class AmlAgent():
         return progress_callback
 
 
-    def download_model(self):
+    def download_model():
         print("downloading model...")
 
 
@@ -84,8 +84,8 @@ class AmlAgent():
         args = sys.argv
 
         if args[0]=='download':
-            download_model()
+            download_model(self)
         else:
-            upload_data()
+            upload_data(self)
 
      
