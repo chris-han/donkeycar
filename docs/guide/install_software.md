@@ -285,7 +285,7 @@ pip install https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.10.1-
 
 ```
 pip install -e .
-donkey createcar ~/mycar
+donkey createcar ~/mtccar
 ```
 
 [Next: Calibrate your car.](./calibrate.md)
