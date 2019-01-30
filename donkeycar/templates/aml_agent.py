@@ -22,6 +22,9 @@ from os.path import isfile, join
 
 
 class AmlAgent():
+
+    file_service=None
+
     def __init__(self):
         self.file_service = FileService(account_name='mtcautonstoragegpdxmrdy', sas_token='?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2029-01-30T15:34:49Z&st=2019-01-30T07:34:49Z&sip=0.0.0.0-255.255.255.255&spr=https,http&sig=bizcj%2FZqjH4aB7bRsvYPUYDyqK90dy4DB%2B6JTx7D1Hs%3D')
         self.share_name ="azureml-filestore-3c6c3e55-de73-4e41-a9ed-bb06bb9f26cc"
@@ -45,11 +48,11 @@ class AmlAgent():
     def upload_data(self):
         print("uploading data...")
         data_dir_name='./tub'
-        self.copy_files(data_dir_name)                  
+        self.copy_files(self,data_dir_name)                  
 
 
 
-    def copy_files(self, data_dir_name):
+    def copy_files(self,data_dir_name):
             if self.file_service.exists(data_dir_name)==False:
                 dest_directory_name = self.file_service.create_directory(self.share_name, data_dir_name)
             else:
@@ -82,10 +85,11 @@ class AmlAgent():
 
     if __name__ == '__main__':
         args = sys.argv
-
+        myagent = AmlAgent()
+        
         if args[0]=='download':
-            download_model(self)
+            myagent.download_model()
         else:
-            upload_data(self)
+            myagent.upload_data()
 
      
