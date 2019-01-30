@@ -48,7 +48,7 @@ class AmlAgent():
     def upload_data(self):
         print("uploading data...")
         data_dir_name='~/mtccar/tub'
-        self.copy_files(self,data_dir_name)                  
+        self.copy_files(data_dir_name)                  
 
 
 
