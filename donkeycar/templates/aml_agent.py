@@ -83,13 +83,13 @@ class AmlAgent():
         print("downloading model...")
 
 
-    if __name__ == '__main__':
-        args = sys.argv
-        myagent = AmlAgent()
-        
-        if args[0]=='download':
-            myagent.download_model()
-        else:
-            myagent.upload_data()
+if __name__ == '__main__':
+    args = sys.argv
+    myagent = AmlAgent()
+    
+    if args[0]=='download':
+        myagent.download_model()
+    else:
+        myagent.upload_data()
 
      
