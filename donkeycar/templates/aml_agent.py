@@ -49,8 +49,8 @@ class AmlAgent():
     '''
     def upload_data(self):
         print("uploading data...")
-        source_folder_name='test data'
-        source_path = './tub'
+        source_folder_name='tub'
+        source_path = '.'
         self.copy_files(source_path,source_folder_name)                  
 
 
