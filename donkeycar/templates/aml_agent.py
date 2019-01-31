@@ -57,7 +57,7 @@ class AmlAgent():
 
     def copy_files(self,source_path,source_folder_name):
             
-            dest_folder_name = 'test2/' #source_folder_name
+            dest_folder_name = source_folder_name
             if self.file_service.exists(share_name=self.share_name ,directory_name=dest_folder_name)==False:
                 self.file_service.create_directory(self.share_name, dest_folder_name)
 
