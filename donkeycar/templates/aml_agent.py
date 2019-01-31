@@ -29,7 +29,7 @@ class AmlAgent():
         self.file_service = FileService(account_name='chrisamlstoragemjeiyhfu', 
             sas_token='?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2029-01-31T18:58:16Z&st=2019-01-31T10:58:16Z&spr=https,http&sig=FMkEUPqTAT7%2BmXZXFjeBaQ1Ydoik8Kic1ZYcGtHYc3w%3D',
             protocol='http')
-        self.share_name ='azureml-filestore-3c6c3e55-de73-4e41-a9ed-bb06bb9f26cc'
+        self.share_name ='azureml-filestore-53a6a9d0-a7f9-4336-a702-19f40d38db08'
     '''
         # Basic
         # List from root
