@@ -27,8 +27,8 @@ class AmlAgent():
 
     def __init__(self):
         self.file_service = FileService(account_name='mtcautonstoragegpdxmrdy', 
-            sas_token='?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2029-01-30T22:29:29Z&st=2019-01-30T14:29:29Z&sip=0.0.0.0-255.255.255.255&spr=https,http&sig=xSaBujPYpwAw%2FejgY%2FxFyuK4PK6Vfh3Pw6isJ7DK4bg%3D',
-            protocol='https')
+            sas_token='?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2029-01-31T18:58:16Z&st=2019-01-31T10:58:16Z&spr=https,http&sig=FMkEUPqTAT7%2BmXZXFjeBaQ1Ydoik8Kic1ZYcGtHYc3w%3D',
+            protocol='http')
         self.share_name ='azureml-filestore-3c6c3e55-de73-4e41-a9ed-bb06bb9f26cc'
     '''
         # Basic
