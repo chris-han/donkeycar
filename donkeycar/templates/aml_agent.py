@@ -49,34 +49,37 @@ class AmlAgent():
     '''
     def upload_data(self):
         print("uploading data...")
-        data_dir_name='tub'
-        source_path = 'C:/Users/chha/Documents/DonkeyCarFiles/'
-        self.copy_files(source_path,data_dir_name)                  
+        source_folder_name='test data'
+        source_path = 'C:\\Users\\chha\\Documents\\DonkeyCarFiles'
+        self.copy_files(source_path,source_folder_name)                  
 
 
 
-    def copy_files(self,source_path,data_dir_name):
-            if self.file_service.exists(share_name=self.share_name ,directory_name=data_dir_name)==False:
-                dest_directory_name = self.file_service.create_directory(self.share_name, data_dir_name)
-            else:
-                dest_directory_name =data_dir_name
+    def copy_files(self,source_path,source_folder_name):
+            
+            dest_folder_name = 'test2/' #source_folder_name
+            if self.file_service.exists(share_name=self.share_name ,directory_name=dest_folder_name)==False:
+                self.file_service.create_directory(self.share_name, dest_folder_name)
 
-            files_in_source_dir = [f for f in listdir(data_dir_name) if isfile(join(data_dir_name, f))]
+            full_source_path=join(source_path,source_folder_name)
+            print ('full_source_path: {}'.format(full_source_path))
+            #files_in_source_dir = [f for f in listdir(data_dir_name) if isfile(join(data_dir_name, f))]
+            files_in_source_folder = [f for f in listdir(full_source_path) if isfile(join(full_source_path, f))]
 
-            for file_name in files_in_source_dir:
-                full_source_file_name = join(source_path,data_dir_name, '/', file_name)
+            for file_name in files_in_source_folder:
+                full_source_file_name = join(full_source_path, file_name)
                 print(file_name)  # file1, file2
                 #source = self.file_service.make_file_url(self.share_name, dest_directory_name, file_name)
                 #copy = self.file_service.copy_file(self.share_name, None, 'file1copy', source)
                 self.file_service.create_file_from_path(
                     self.share_name,              # share name
-                    dest_directory_name,                   # directory path - root path if none
+                    source_folder_name,                   # directory path - root path if none
                     file_name,               # destination file name
                     full_source_file_name,      # full source path with file name
                     progress_callback=self.generate_progress_callback(file_name)) #report progress
 
 
-    def generate_progress_callback(file_name):
+    def generate_progress_callback(self,file_name):
         def progress_callback(current, total):
             print('({}, {}, {})'.format(file_name, current, total))
         return progress_callback
