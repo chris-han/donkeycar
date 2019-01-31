@@ -27,9 +27,9 @@ class AmlAgent():
 
     def __init__(self):
         self.file_service = FileService(account_name='mtcautonstoragegpdxmrdy', 
-            sas_token='?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2029-01-30T20:06:14Z&st=2019-01-30T12:06:14Z&spr=https,http&sig=vbVbA9dgZF3p%2FZ3Y7A%2FjKILiQXvPw667EtZcAgsZEIY%3D',
-            protocol='http')
-        self.share_name ="azureml-filestore-3c6c3e55-de73-4e41-a9ed-bb06bb9f26cc"
+            sas_token='?sv=2018-03-28&ss=bfqt&srt=sco&sp=rwdlacup&se=2029-01-30T22:29:29Z&st=2019-01-30T14:29:29Z&sip=0.0.0.0-255.255.255.255&spr=https,http&sig=xSaBujPYpwAw%2FejgY%2FxFyuK4PK6Vfh3Pw6isJ7DK4bg%3D',
+            protocol='https')
+        self.share_name ='azureml-filestore-3c6c3e55-de73-4e41-a9ed-bb06bb9f26cc'
     '''
         # Basic
         # List from root
@@ -49,13 +49,14 @@ class AmlAgent():
     '''
     def upload_data(self):
         print("uploading data...")
-        data_dir_name='~/mtccar/tub'
-        self.copy_files(data_dir_name)                  
+        data_dir_name='tub'
+        source_path = 'C:/Users/chha/Documents/DonkeyCarFiles/'
+        self.copy_files(source_path,data_dir_name)                  
 
 
 
-    def copy_files(self,data_dir_name):
-            if self.file_service.exists(data_dir_name)==False:
+    def copy_files(self,source_path,data_dir_name):
+            if self.file_service.exists(share_name=self.share_name ,directory_name=data_dir_name)==False:
                 dest_directory_name = self.file_service.create_directory(self.share_name, data_dir_name)
             else:
                 dest_directory_name =data_dir_name
@@ -63,7 +64,7 @@ class AmlAgent():
             files_in_source_dir = [f for f in listdir(data_dir_name) if isfile(join(data_dir_name, f))]
 
             for file_name in files_in_source_dir:
-                full_source_file_name = join(data_dir_name, '/', file_name)
+                full_source_file_name = join(source_path,data_dir_name, '/', file_name)
                 print(file_name)  # file1, file2
                 #source = self.file_service.make_file_url(self.share_name, dest_directory_name, file_name)
                 #copy = self.file_service.copy_file(self.share_name, None, 'file1copy', source)
