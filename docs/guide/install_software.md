@@ -154,11 +154,11 @@ donkey createcar ~/mtcar
 ----
 Now let's setup the same donkey library on your laptop or server so you can test and train autopilots. Install varies depending on platform.
 
-## Install donkeycar on Linux
+## Install donkeycar on Linux (verion needs to be 16 and up)
 
 Install dependencies, setup virtualenv
 ```bash
-sudo apt-get install python-virtualenv build-essential python3-dev gfortran libhdf5-serial-dev
+sudo apt-get install virtualenv build-essential python3-dev gfortran libhdf5-dev
 virtualenv env -p python3
 source env/bin/activate
 ```
