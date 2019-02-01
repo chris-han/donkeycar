@@ -16,32 +16,32 @@ your car with `Ctrl-c` in the ssh session for your car.
 5. The data you've collected is in the data folder in the most recent tub folder.
 
 
-## Transfer data from your car to your computer.
+## Transfer data from your car (tub) to your computer (data).
 
 Since the Raspberry Pi is not very powerful, we need to transfer the data
 to a PC computer to train.
 
-In a new terminal session on your host PC use rsync to copy your cars
-folder from the raspberry pi.
+In a new terminal session on your host PC use rsync to copy your cars tub
+folder from the raspberry pi to PC's ~mtccar/data/.
 ```bash
-rsync -r pi@<your_pi_ip_address>:~/mtccar/tub/  ~/mtccar/tub/
+rsync -r pi@<your_pi_ip_address>:~/mtccar/tub/  ~/mtccar/data/
 ```
 
 
 ## Train a model
 * In the same terminal you can now run the training script on the latest tub by passing the path to that tub as an argument. You can optionally pass path masks, such as `./data/*` or `./data/tub_?_17-08-28` to gather multiple tubs. For example:
 ```bash
- python ~/mycar/manage.py train --tub <tub folder names comma separated> --model ./models/mypilot
+ python ~/mtccar/manage.py train --tub <tub folder names comma separated> --model ./models/mypilot
 ```
 Optionally you can pass no arguments for the tub, and then all tubs will be used in the default data dir.
 ```bash
- python ~/mycar/manage.py train --model ~/mtccar/models/mypilot
+ python ~/mtccar/manage.py train --model ~/mtccar/models/mypilot
 ```
 
 
 * Now you can use rsync again to move your pilot back to your car.
 ```bash
-rsync -r ~/mycar/models/ pi@<your_ip_address>:~/mtccar/models/
+rsync -r ~/mtccar/models/ pi@<your_ip_address>:~/mtccar/models/
 ```
 
 * Now you can start your car again and pass it your model to drive.
