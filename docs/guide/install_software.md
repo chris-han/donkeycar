@@ -148,7 +148,7 @@ python -c "import donkeycar as dk; print(dk.__version__)"
 Now generate the drive script, config and folder structure for your car.
 
 ```bash
-donkey createcar ~/mtcar
+donkey createcar ~/mtccar
 ```
 
 ----
