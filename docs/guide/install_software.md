@@ -181,8 +181,6 @@ pip install donkeycar[tf]
 
 See [https://github.com/tensorflow/tensorflow/issues/7166](https://github.com/tensorflow/tensorflow/issues/7166) for more information.
 
-[Next: Calibrate your car.](./calibrate.md)
-
 ----
 
 ## Install donkeycar on Windows
