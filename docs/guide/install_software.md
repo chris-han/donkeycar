@@ -159,13 +159,13 @@ Now let's setup the same donkey library on your laptop or server so you can test
 Install dependencies, setup virtualenv
 ```bash
 sudo apt-get install virtualenv build-essential python3-dev gfortran libhdf5-dev
-virtualenv env -p python3
-source env/bin/activate
+virtualenv donkey -p python3
+source donkey/bin/activate
 ```
 
 * Install donkey source and create your local working dir:
 ```bash
-git clone https://github.com/autorope/donkeycar
+git clone https://github.com/chris-han/donkeycar
 ```
 * Install the donkeycar package in pip
 
@@ -182,6 +182,14 @@ pip install donkeycar[tf]
 See [https://github.com/tensorflow/tensorflow/issues/7166](https://github.com/tensorflow/tensorflow/issues/7166) for more information.
 
 ----
+
+Create the car
+
+'''bash
+donkey createcar ~/mtccar
+'''
+
+
 
 ## Install donkeycar on Windows
 
@@ -233,7 +241,7 @@ donkey createcar ~/mycar
 > type ```activate donkey``` to re-enable the mappings to donkey specific
 > Python libraries
 
-[Next: Calibrate your car.](./calibrate.md)
+
 
 ----
 
@@ -286,7 +294,6 @@ pip install -e .
 donkey createcar ~/mtccar
 ```
 
-[Next: Calibrate your car.](./calibrate.md)
 
 > Note: After closing the Terminal, when you open it again, you will need to
 > type ```source activate donkey``` to re-enable the mappings to donkey specific
