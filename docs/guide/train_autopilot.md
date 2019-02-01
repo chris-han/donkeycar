@@ -31,11 +31,11 @@ rsync -r pi@<your_pi_ip_address>:~/mtccar/tub/  ~/mtccar/data/
 ## Train a model
 * In the same terminal you can now run the training script on the latest tub by passing the path to that tub as an argument. You can optionally pass path masks, such as `./data/*` or `./data/tub_?_17-08-28` to gather multiple tubs. For example:
 ```bash
- python ~/mtccar/manage.py train --tub <tub folder names comma separated> --model ./models/mypilot
+ python ~/mtccar/manage.py train --tub <tub folder names comma separated> --model ./models/mtcpilot
 ```
 Optionally you can pass no arguments for the tub, and then all tubs will be used in the default data dir.
 ```bash
- python ~/mtccar/manage.py train --model ~/mtccar/models/mypilot
+ python ~/mtccar/manage.py train --model ~/mtccar/models/mtcpilot
 ```
 
 
@@ -46,7 +46,7 @@ rsync -r ~/mtccar/models/ pi@<your_ip_address>:~/mtccar/models/
 
 * Now you can start your car again and pass it your model to drive.
 ```bash
-python manage.py drive --model ~/mtccar/models/mypilot
+python manage.py drive --model ~/mtccar/models/mtcpilot
 ```
 
 ## Training Tips:
