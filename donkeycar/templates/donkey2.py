@@ -25,7 +25,7 @@ from donkeycar.parts.web_controller import LocalWebController
 from donkeycar.parts.clock import Timestamp
 from donkeycar.parts.datastore import TubGroup, TubWriter
 from donkeycar.parts.transform import Lambda
-from donkeypart_xbox_one_s_controller import Xbox1sController 
+
 
 #import parts
 def drive(cfg, model_path=None, use_joystick=False, use_chaos=False):
@@ -39,7 +39,8 @@ def drive(cfg, model_path=None, use_joystick=False, use_chaos=False):
     Parts may have named outputs and inputs. The framework handles passing named outputs
     to parts requesting the same named input.
     """
-
+    from donkeypart_xbox_one_s_controller import Xbox1sController 
+    
     V = dk.vehicle.Vehicle()
 
     clock = Timestamp()
