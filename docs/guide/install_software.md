@@ -232,7 +232,7 @@ activate donkey
 
 ```
 pip install -e .
-donkey createcar ~/mycar
+donkey createcar ~/mtccar
 ```
 
 
