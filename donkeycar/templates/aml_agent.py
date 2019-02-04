@@ -16,10 +16,12 @@ from azure.storage.file import (
     FilePermissions,
 )
 
-import sys
+import sys,os
 from os import listdir
 from os.path import isfile, join
 
+from azure.storage.blob import BlockBlobService, PublicAccess
+import zipfile
 
 class AmlAgent():
 
@@ -89,12 +91,38 @@ class AmlAgent():
         print("downloading model...")
 
 
+
+    def download_zip_file_from_blob():
+        try:
+            # Create the BlockBlockService that is used to call the Blob service for the storage account
+            block_blob_service = BlockBlobService(account_name='chrisamlstoragemjeiyhfu', sas_token='?sv=2018-03-28&ss=bf&srt=sco&sp=rwdlac&se=2029-02-04T23:12:23Z&st=2019-02-04T15:12:23Z&sip=0.0.0.0-255.255.255.255&spr=https,http&sig=SwxeDkbctxYI2nV9acctrUaCvL5EsM2PO7GK4eMCNv4%3D')
+            # Create a container called 'quickstartblobs'.
+            container_name ='azureml-blobstore-53a6a9d0-a7f9-4336-a702-19f40d38db08'
+            # List the blobs in the container
+            print("\nList blobs in the container")
+            generator = block_blob_service.list_blobs(container_name)
+            local_path ="C:/Users/chris/mtccar/data"
+            for blob in generator:
+                print("\t Blob name: " + blob.name)
+                full_path_to_file = os.path.join(local_path, blob.name)
+                print("\nDownloading blob to " + full_path_to_file)
+                block_blob_service.get_blob_to_path(container_name, blob.name, full_path_to_file)
+                with zipfile.ZipFile(full_path_to_file,"r") as zip_ref:
+                    zip_ref.extractall(local_path)
+
+        except Exception as e:
+            print(e)
+
+
+
 if __name__ == '__main__':
     args = sys.argv
     myagent = AmlAgent()
     
-    if args[0]=='download':
+    if args[0]=='download_model':
         myagent.download_model()
+    elif args[0]=='download_zip':
+        myagent.download_zip_file_from_blob()
     else:
         myagent.upload_data()
 
