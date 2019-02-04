@@ -118,7 +118,8 @@ class Tub(object):
 
     def get_input_type(self, key):
         input_types = dict(zip(self.inputs, self.types))
-        return input_types.get(key)
+        input_type = input_types.get(key)
+        return input_type
 
     def write_json_record(self, json_data):
         path = self.get_json_record_path(self.current_ix)

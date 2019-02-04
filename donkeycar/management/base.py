@@ -87,7 +87,7 @@ class CreateCar(BaseCommand):
         app_template_path = os.path.join(TEMPLATES_PATH, template+'.py')
         config_template_path = os.path.join(TEMPLATES_PATH, 'config_defaults.py')
 
-        aml_agent_template_path = os.path.join(TEMPLATES_PATH, 'cloud_sync.py')
+        aml_agent_template_path = os.path.join(TEMPLATES_PATH, 'aml_agent.py')
         aml_config_template_path = os.path.join(TEMPLATES_PATH, 'config.json')
 
         car_app_path = os.path.join(path, 'manage.py')
