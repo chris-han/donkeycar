@@ -139,7 +139,7 @@ def drive(cfg, model_path=None, use_joystick=False, use_chaos=False):
             max_loop_count=cfg.MAX_LOOPS)
 
 
-def train(cfg, tub_names, new_model_path, base_model_path=None):
+def train(cfg, tub_names, new_model_path, base_model_path=None, log_path=None):
     """
     use the specified data in tub_names to train an artifical neural network
     saves the output trained model as model_name
@@ -174,7 +174,9 @@ def train(cfg, tub_names, new_model_path, base_model_path=None):
              val_gen,
              saved_model_path=new_model_path,
              steps=steps_per_epoch,
-             train_split=cfg.TRAIN_TEST_SPLIT)
+             train_split=cfg.TRAIN_TEST_SPLIT,
+             log_path=log_path
+             )
 
 
 if __name__ == '__main__':
@@ -189,7 +191,8 @@ if __name__ == '__main__':
         new_model_path = args['--model']
         base_model_path = args['--base_model']
         cache = not args['--no_cache']
-        train(cfg, tub, new_model_path, base_model_path)
+        log_path=args['--log_path']
+        train(cfg, tub, new_model_path, base_model_path,log_path)
 
 
 

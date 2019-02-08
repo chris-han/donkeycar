@@ -5,13 +5,12 @@ keras.py
 functions to run and train autopilots using keras
 
 """
-
 from tensorflow.python.keras.layers import Input
 from tensorflow.python.keras.models import Model, load_model
 from tensorflow.python.keras.layers import Convolution2D
 from tensorflow.python.keras.layers import Dropout, Flatten, Dense
 from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping
-
+import tensorflow.python.keras as keras
 
 class KerasPilot:
 
@@ -23,7 +22,7 @@ class KerasPilot:
 
     def train(self, train_gen, val_gen,
               saved_model_path, epochs=100, steps=100, train_split=0.8,
-              verbose=1, min_delta=.0005, patience=5, use_early_stop=True):
+              verbose=1, min_delta=.0005, patience=5, use_early_stop=True, log_path=None):
         """
         train_gen: generator that yields an array of images an array of
 
@@ -45,8 +44,13 @@ class KerasPilot:
 
         callbacks_list = [save_best]
 
+        tensorboard_Callback = keras.callbacks.TensorBoard(log_dir=log_path, histogram_freq=0, write_graph=True, write_images=True)
+
         if use_early_stop:
             callbacks_list.append(early_stop)
+
+        if not log_path==None:
+            callbacks_list.append(tensorboard_Callback)
 
         hist = self.model.fit_generator(
             train_gen,
