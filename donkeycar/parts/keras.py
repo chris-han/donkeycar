@@ -9,8 +9,8 @@ from tensorflow.python.keras.layers import Input
 from tensorflow.python.keras.models import Model, load_model
 from tensorflow.python.keras.layers import Convolution2D
 from tensorflow.python.keras.layers import Dropout, Flatten, Dense
-from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping
-import tensorflow.python.keras as keras
+from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping,TensorBoard
+
 
 class KerasPilot:
 
@@ -44,7 +44,7 @@ class KerasPilot:
 
         callbacks_list = [save_best]
 
-        tensorboard_Callback = keras.callbacks.TensorBoard(log_dir=log_path, histogram_freq=0, write_graph=True, write_images=True)
+        tensorboard_Callback = TensorBoard(log_dir=log_path, histogram_freq=0, write_graph=True, write_images=True)
 
         if use_early_stop:
             callbacks_list.append(early_stop)
