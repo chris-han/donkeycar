@@ -50,6 +50,7 @@ class KerasPilot:
             callbacks_list.append(early_stop)
 
         if not log_path==None:
+            print('log_path: ', log_path)
             callbacks_list.append(tensorboard_Callback)
 
         hist = self.model.fit_generator(
