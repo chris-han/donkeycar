@@ -33,8 +33,8 @@ setup(name='donkeycar',
                         ],
 
       extras_require={
-                      'tf': ['tensorflow>=1.9.0'],
-                      'tf_gpu': ['tensorflow-gpu>=1.9.0'],
+                      'tf': ['tensorflow==1.9.0'],
+                      'tf_gpu': ['tensorflow-gpu==1.9.0'],
                       'pi': [
                           'picamera',
                           'Adafruit_PCA9685',
