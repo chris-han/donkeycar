@@ -11,8 +11,9 @@ community contributions.
 * [Donkeycar Updates & Examples](http://donkeycar.com)
 * [Build instructions and Software documentation](http://docs.donkeycar.com)
 * [Slack / Chat](https://donkey-slackin.herokuapp.com/)
+* [Video](./docs/assets/build_hardware/mtccar.mov)
 
-![donkeycar](./docs/assets/build_hardware/donkey2.PNG)
+![donkeycar](./docs/assets/build_hardware/mtccar.jpg)
 
 #### Use Donkey if you want to:
 * Make an RC car drive its self.
